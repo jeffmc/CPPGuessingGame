@@ -1,8 +1,14 @@
+// Jeff McMillan 9-14-22 Guessing Game C++
+// This program will present the user with prompts to make a integer guess
+// within a given range. As the user guesses, the program returns whether the guess is too high, too low,
+// or just right. When the user has either won or run out of guesses, the program asks if the user 
+// would like to play again.
+
 #include <iostream>
 #include <cstdlib>
 #include <ctime>
 
-#define GUESS_LIMIT 5
+#define GUESS_LIMIT 5 
 #define GUESS_MIN 0
 #define GUESS_MAX 100
 
@@ -16,7 +22,7 @@ int main() {
 	bool playing = true;
 	while (playing) {
 		cout << std::endl << "A random number between " << GUESS_MIN << " and " << GUESS_MAX << " has been chosen..." << std::endl;
-		int target = rand() % GUESS_MOD;
+		int target = GUESS_MIN + rand() % GUESS_MOD;
 		int guess = -1;
 		int guessCt = 0;
 		bool guessing = true;
@@ -28,16 +34,22 @@ int main() {
 			} else if (guessCt == GUESS_LIMIT-1) {
 				cout << "One guess left, make it count!" << std::endl;
 			}
-			cout << "Guess: ";
+			cout << "(" << GUESS_LIMIT-guessCt << ") Guess: ";
 			cin >> guess;
-			guessCt++;
 			if (guess == target) {
 				cout << guess << " was correct in " << guessCt << " tries!" << std::endl;
+				guessCt++;
 				guessing = false;
+			} else if (guess < GUESS_MIN) {
+				cout << guess << " was below the range " << GUESS_MIN << "-" << GUESS_MAX << "!" << std::endl;
+			} else if (guess > GUESS_MAX) {	
+				cout << guess << " was above the range " << GUESS_MIN << "-" << GUESS_MAX << "!" << std::endl;
 			} else if (guess < target) {
 				cout << guess << " was too low" << std::endl;
+				guessCt++;
 			} else {
 				cout << guess << " was too high" << std::endl;
+				guessCt++;
 			}
 		}
 		char again;
@@ -49,3 +61,4 @@ int main() {
 
 	return 0;
 }
+
