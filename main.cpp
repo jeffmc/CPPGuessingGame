@@ -20,13 +20,20 @@ using namespace std;
 int main() {
 	srand(time(NULL));
 	bool playing = true;
+	
+	// Enter game loop!
 	while (playing) {
+		
+		// Introduce user to guessing process and pick random target!
 		cout << std::endl << "A random number between " << GUESS_MIN << " and " << GUESS_MAX << " has been chosen..." << std::endl;
 		int target = GUESS_MIN + rand() % GUESS_MOD;
 		int guess = -1;
 		int guessCt = 0;
 		bool guessing = true;
+
+		// Enter guess loop!
 		while (guessing) {
+			// Check if guess count has surpassed guess limit
 			if (guessCt >= GUESS_LIMIT) {
 				guessing = false;
 				cout << "Out of guesses!" << std::endl;
@@ -34,8 +41,12 @@ int main() {
 			} else if (guessCt == GUESS_LIMIT-1) {
 				cout << "One guess left, make it count!" << std::endl;
 			}
+
+			// Take guess input from user
 			cout << "(" << GUESS_LIMIT-guessCt << ") Guess: ";
 			cin >> guess;
+			
+			// Check guess against range and target.
 			if (guess == target) {
 				cout << guess << " was correct in " << guessCt << " tries!" << std::endl;
 				guessCt++;
@@ -52,6 +63,8 @@ int main() {
 				guessCt++;
 			}
 		}
+
+		// After user has guessed successfully or run out of guesses, prompt to play again.
 		char again;
 		cout << "Play again (y/n)? ";
 		cin >> again;
