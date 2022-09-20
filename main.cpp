@@ -1,4 +1,9 @@
 // Jeff McMillan 9-14-22 Guessing Game C++
+
+// 1. No global variables. (Global constants are all right.)
+// 2. No strings. Not ever. (You can use cstrings/character arrays, and the cstring and cctype libraries are okay. In fact, I recommend using strcmp and strlen in your projects.)
+// 3. You should include <iostream>, not stdio. (This applies more to C programmers.)
+
 // This program will present the user with prompts to make a integer guess
 // within a given range. As the user guesses, the program returns whether the guess is too high, too low,
 // or just right. When the user has either won or run out of guesses, the program asks if the user 
